@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import logo from "/vite.svg"; // Importación del logo de la ferretería
 import "bootstrap-icons/font/bootstrap-icons.css"; // Importación de íconos de Bootstrap
+import "../../App.css"; // Estilos personalizados de la aplicación
 
 const Encabezado = () => {
   // Estado para controlar el colapso del menú lateral
@@ -44,6 +45,8 @@ const Encabezado = () => {
           className="text-white"
           style={{ cursor: "pointer" }}
         >
+
+          
           <img alt="" src={logo} width="30" height="30" className="d-inline-block align-top" />{" "}
           <strong>Ferretería Selva</strong>
         </Navbar.Brand>
@@ -81,20 +84,12 @@ const Encabezado = () => {
                 onClick={() => navegarA("/inicio")}
                 className={estaColapsado ? "text-black" : "text-white"}
               >
+                
+
+
                 {estaColapsado ? <i className="bi-house-door-fill me-2"></i> : null}
                 <strong>Inicio</strong>
               </Nav.Link>
-
-               {/* Opción de navegación a clientes */}
-               <Nav.Link
-                onClick={() => navegarA("/Clientes")}
-                className={estaColapsado ? "text-black" : "text-white"}
-              >
-                {estaColapsado ? <i className="bi-house-door-fill me-2"></i> : null}
-                <strong>Cliente</strong>
-              </Nav.Link>
-              
-              
 
               {/* Lógica condicional para mostrar Cerrar Sesión o Iniciar Sesión */}
               {estaLogueado ? (
@@ -125,3 +120,4 @@ const Encabezado = () => {
 };
 
 export default Encabezado;
+

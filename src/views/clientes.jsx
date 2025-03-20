@@ -1,6 +1,6 @@
 import inicioCliente from "../components/Cliente/cliente";
 
-const clientes =()=>{
+const Clientes =()=>{
     return(
 <>
 <inicioCliente/>
@@ -8,4 +8,4 @@ const clientes =()=>{
     );
 };
 
-export default clientes;
+export default Clientes;
