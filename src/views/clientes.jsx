@@ -1,9 +1,9 @@
-import inicioCliente from "../components/Cliente/cliente";
+import InicioCliente from "../components/cliente/Cliente";
 
 const Clientes =()=>{
     return(
 <>
-<inicioCliente/>
+<InicioCliente/>
 </>
     );
 };

@@ -1,7 +1,7 @@
-const inicioCliente = () =>{
+const InicioCliente = () =>{
     return(
-        <h2>Esta es la vista cliente</h2>
+        <h2>Estas es la vista cliente</h2>
     );
 };
 
-export default inicioCliente;
+export default InicioCliente;
