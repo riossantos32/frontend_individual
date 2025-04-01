@@ -7,6 +7,7 @@ import './App.css';
 import Categorias from "./views/categorias"
 import Encabezado from "./components/Encabezado/encabezado";
 import Producto from "./views/productos";
+import Ventas from "./views/ventas";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/clientes" element={<Clientes/>} />
           <Route path="/productos" element={<Producto/>} />
           <Route path="/categorias" element={<Categorias />} />
+          <Route path="/ventas" element={<Ventas />} />
         </Routes>
       </main>
     </Router>
