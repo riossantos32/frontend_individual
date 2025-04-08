@@ -29,8 +29,11 @@ const TablaCategorias = ({ categorias, cargando, error }) => {
             <td>{categoria.id_categoria}</td>
             <td>{categoria.nombre_categoria}</td>
             <td>{categoria.descripcion_categoria}</td>
+            <button className='eliminar'>Eliminar</button>
           </tr>
+          
         ))}
+       
       </tbody>
     </Table>
   );

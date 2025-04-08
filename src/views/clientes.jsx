@@ -2,9 +2,9 @@
 // Importaciones necesarias para la vista
 import React, { useState, useEffect } from 'react';
 import TablaClientes from '../components/cliente/TablaClientes'; // Importa el componente de tabla
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 import ModalRegistroCategoria from '../components/categorias/ModalRegistroCategoria';
-
+import CuadroBusquedas from '../components/busquedas/CuadroBusquedas';
 
 // Declaración del componente Categorias
 const Clientes = () => {
@@ -13,9 +13,9 @@ const Clientes = () => {
   const [cargando, setCargando] = useState(true);            // Controla el estado de carga
   const [errorCarga, setErrorCarga] = useState(null);        // Maneja errores de la petición
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [nuevaCategoria, setNuevaCategoria] = useState({
-  });
-
+   const [clientesFiltradas, setClientesFiltradas] = useState([]);
+    const [textoBusqueda, setTextoBusqueda] = useState("");
+ 
 
   const obtenerCategorias = async () => { // Método renombrado a español
     try {
@@ -48,6 +48,17 @@ const Clientes = () => {
     }));
   };
 
+  const manejarCambioBusqueda = (e) => {
+    const texto = e.target.value.toLowerCase();
+    setTextoBusqueda(texto);
+    
+    const filtradas = listaClientes.filter(
+      (cliente) =>
+        cliente.primer_nombre.toLowerCase().includes(texto) ||
+        cliente.primer_apellido.toLowerCase().includes(texto)
+    );
+    setClientesFiltradas(filtradas);
+  };
 
 
 
@@ -58,9 +69,25 @@ const Clientes = () => {
         <br />
         <h4>Clientes</h4>
 
+        <Row>
+    <Col lg={2} md={4} sm={4} xs={5}>
+      <Button variant="primary" onClick={() => setMostrarModal(true)} style={{ width: "100%" }}>
+        Nuevo Cliente
+      </Button>
+    </Col>
+    <Col lg={5} md={8} sm={8} xs={7}>
+      <CuadroBusquedas
+        textoBusqueda={textoBusqueda}
+        manejarCambioBusqueda={manejarCambioBusqueda}
+      />
+    </Col>
+  </Row>  
+
         {/* Pasa los estados como props al componente TablaCategorias */}
         <TablaClientes 
-          clientes={listaClientes} 
+             
+          clientes={clientesFiltradas} 
+          manejarCambioInput={manejarCambioInput}
           cargando={cargando} 
           error={errorCarga} 
         />
