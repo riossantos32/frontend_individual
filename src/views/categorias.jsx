@@ -20,6 +20,8 @@ const Categorias = () => {
     nombre_categoria: '',
     descripcion_categoria: ''
   });
+  const [paginaActual, establecerPaginaActual] = useState(1);
+const elementosPorPagina = 5; // Número de elementos por página
 
 
   const obtenerCategorias = async () => { // Método renombrado a español
@@ -67,7 +69,6 @@ const Categorias = () => {
   };
 
 
-
   // Manejo la inserción de una nueva categoría
   const agregarCategoria = async () => {
 
@@ -98,7 +99,11 @@ const Categorias = () => {
     }
   };
 
-
+// Calcular elementos paginados
+const categoriasPaginadas = categoriasFiltradas.slice(
+  (paginaActual - 1) * elementosPorPagina,
+  paginaActual * elementosPorPagina
+);
 
   // Renderizado de la vista
   return (
@@ -123,10 +128,14 @@ const Categorias = () => {
 
 
         {/* Pasa los estados como props al componente TablaCategorias */}
-        <TablaCategorias x
-          categorias={categoriasFiltradas} 
+        <TablaCategorias
+          categorias={categoriasPaginadas} 
           cargando={cargando} 
           error={errorCarga} 
+          totalElementos={listaCategorias.length} // Total de elementos
+          elementosPorPagina={elementosPorPagina} // Elementos por página
+          paginaActual={paginaActual} // Página actual
+          establecerPaginaActual={establecerPaginaActual} // Método para cambiar página
         />
 
 <ModalRegistroCategoria
