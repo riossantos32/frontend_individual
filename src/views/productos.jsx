@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TablaProductos from '../components/producto/TablaProductos'; // Asumiendo que tienes este componente
 import ModalRegistroProducto from '../components/producto/ModalRegistroProducto'; // Asumiendo que tienes este componente
 import { Container, Button } from "react-bootstrap";
+import ModalEliminacionProducto from '../components/producto/ModalEliminacionProducto';
 
 const Productos = () => {
   const [listaProductos, setListaProductos] = useState([]);
@@ -17,6 +18,8 @@ const Productos = () => {
     stock: '',
     imagen: ''
   });
+  const [mostrarModalEliminacion, setMostrarModalEliminacion] = useState(false);
+  const [productoAEliminar, setProductoAEliminar] = useState(null);
 
   // Obtener productos
   const obtenerProductos = async () => {
@@ -56,6 +59,49 @@ const Productos = () => {
       [name]: value
     }));
   };
+
+  const manejarCambioInputEdicion = (e) => {
+    const { name, value } = e.target;
+    setCategoriaEditada(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  
+  const eliminarProducto = async () => {
+    if (!productoAEliminar) return;
+
+    try {
+      const respuesta = await fetch(`http://localhost:3000/api/eliminarproducto/${productoAEliminar.id_producto}`, {
+        method: 'DELETE',
+      });
+
+      if (!respuesta.ok) {
+        throw new Error('Error al eliminar el producto');
+      }
+
+      await obtenerProductos(); // Refresca la lista
+      setMostrarModalEliminacion(false);
+      establecerPaginaActual(1); // Regresa a la primera página
+      setProductoAEliminar(null);
+      setErrorCarga(null);
+    } catch (error) {
+      setErrorCarga(error.message);
+    }
+  };
+
+  const abrirModalEliminacion = (producto) => {
+    setProductoAEliminar(producto);
+    setProductoAEliminar(true);
+  };
+
+  
+  const abrirModalEdicion = (producto) => {
+    setEditada(producto);
+    setMostrarModalEdicion(true);
+  };
+
 
   const agregarProducto = async () => {
     if (!nuevoProducto.nombre_producto || !nuevoProducto.id_categoria || 
@@ -104,6 +150,7 @@ const Productos = () => {
         productos={listaProductos} 
         cargando={cargando} 
         error={errorCarga} 
+        abrirModalEdicion={abrirModalEdicion} // Método para abrir modal de edición
       />
 
       <ModalRegistroProducto
@@ -115,6 +162,13 @@ const Productos = () => {
         errorCarga={errorCarga}
         categorias={listaCategorias}
       />
+
+<ModalEliminacionProducto
+          mostrarModalEliminacion={mostrarModalEliminacion}
+          setMostrarModalEliminacion={setMostrarModalEliminacion}
+          eliminarProducto={eliminarProducto}
+        />
+
       
     </Container>
   );

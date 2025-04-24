@@ -1,9 +1,9 @@
 // Importaciones necesarias para el componente visual
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TablaProductos = ({ productos, cargando, error }) => {
+const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) => {
 
   if (cargando) {
     return <div>Cargando productos...</div>; // Muestra mensaje mientras carga
@@ -44,6 +44,17 @@ const TablaProductos = ({ productos, cargando, error }) => {
                 'Sin imagen'
               )}
             </td>
+             <td>
+            
+                            
+                            <Button
+                              variant="outline-danger"
+                              size="sm"
+                             onClick={() => abrirModalEliminacion(producto)}
+                            >
+                              <i className="bi bi-trash"></i>
+                            </Button>
+                          </td>
           </tr>
         ))}
       </tbody>

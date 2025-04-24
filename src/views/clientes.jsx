@@ -17,14 +17,15 @@ const Clientes = () => {
     const [textoBusqueda, setTextoBusqueda] = useState("");
  
 
-  const obtenerCategorias = async () => { // Método renombrado a español
+  const obtenerClientes = async () => { // Método renombrado a español
     try {
       const respuesta = await fetch('http://localhost:3000/api/clientes');
       if (!respuesta.ok) {
         throw new Error('Error al cargar las categorías');
       }
       const datos = await respuesta.json();
-      setListaClientes(datos);    // Actualiza el estado con los datos
+      setListaClientes(datos);
+      setClientesFiltradas (datos);   // Actualiza el estado con los datos
       setCargando(false);           // Indica que la carga terminó
     } catch (error) {
       setErrorCarga(error.message); // Guarda el mensaje de error
@@ -35,7 +36,7 @@ const Clientes = () => {
 
   // Lógica de obtención de datos con useEffect
   useEffect(() => {
-    obtenerCategorias();            // Ejecuta la función al montar el componente
+    obtenerClientes();            // Ejecuta la función al montar el componente
   }, []);                           // Array vacío para que solo se ejecute una vez
 
 
