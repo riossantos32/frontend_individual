@@ -5,9 +5,10 @@ import Inicio from "./views/Inicio";
 import Clientes from "./views/clientes";
 import './App.css';
 import Categorias from "./views/categorias"
-import Encabezado from "./components/Encabezado/encabezado";
+import Encabezado from "./components/encabezado/Encabezado";
 import Producto from "./views/productos";
 import Ventas from "./views/ventas";
+import Compras from "./views/Compras";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/clientes" element={<Clientes/>} />
           <Route path="/productos" element={<Producto/>} />
           <Route path="/categorias" element={<Categorias />} />
+           <Route path="/Compras" element={<Compras />} />
           <Route path="/ventas" element={<Ventas />} />
         </Routes>
       </main>

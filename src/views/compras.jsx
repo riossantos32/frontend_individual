@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TablaCompras from '../components/compras/TablaCompras';
-import ModalActualizacionCompra from '../components/compras/ModalActualizacionCompra';
+import TablaCompras from '../components/compra/TablaCompras';
+import ModalActualizacionCompra from '../components/compra/ModalActualizacionCompra';
 import ModalDetallesCompra from '../components/detalles_compras/ModalDetallesCompra';
-import ModalEliminacionCompra from '../components/compras/ModalEliminacionCompra';
-import ModalRegistroCompra from '../components/compras/ModalRegistroCompra';
+import ModalEliminacionCompra from '../components/compra/ModalEliminacionCompra';
+import ModalRegistroCompra from '../components/compra/ModalRegistroCompra';
 import { Container, Button, Row, Col } from 'react-bootstrap';
 
 const Compras = () => {
@@ -48,7 +48,7 @@ const Compras = () => {
 
   const obtenerEmpleados = async () => {
     try {
-      const respuesta = await fetch('http://localhost:3000/api/empleados');
+      const respuesta = await fetch('http://localhost:3000/api/empleado');
       if (!respuesta.ok) throw new Error('Error al cargar los empleados');
       const datos = await respuesta.json();
       setEmpleados(datos);
