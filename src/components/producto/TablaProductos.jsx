@@ -35,26 +35,25 @@ const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) =
             <td>{producto.id_categoria}</td>
             <td>{producto.precio_unitario.toFixed(2)}</td>
             <td>{producto.stock}</td>
-            <td>
-              {producto.imagen ? (
-                <a href={producto.imagen} target="_blank" rel="noopener noreferrer">
-                  Ver imagen
-                </a>
-              ) : (
-                'Sin imagen'
-              )}
-            </td>
-             <td>
-            
-                            
-                            <Button
-                              variant="outline-danger"
-                              size="sm"
-                             onClick={() => abrirModalEliminacion(producto)}
-                            >
-                              <i className="bi bi-trash"></i>
-                            </Button>
-                          </td>
+           <td>
+            {producto.imagen ? (
+              <img
+                src={`data:image/png;base64,${producto.imagen}`}
+                alt={producto.nombre_producto}
+                style={{ maxWidth: '100px' }}
+              />
+            ) : (
+              'Sin imagen'
+            )}
+          </td>
+             <td>             
+            <Button
+             variant="outline-danger"
+             size="sm"
+             onClick={() => abrirModalEliminacion(producto)}  >
+             <i className="bi bi-trash"></i>
+             </Button>
+             </td>
           </tr>
         ))}
       </tbody>

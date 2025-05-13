@@ -9,6 +9,7 @@ import Encabezado from "./components/encabezado/Encabezado";
 import Producto from "./views/productos";
 import Ventas from "./views/ventas";
 import Compras from "./views/Compras";
+import Catalogo from "./views/CatalogoProductos"
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/categorias" element={<Categorias />} />
            <Route path="/Compras" element={<Compras />} />
           <Route path="/ventas" element={<Ventas />} />
+           <Route path="/CatalogoProductos" element={<Catalogo />} />
         </Routes>
       </main>
     </Router>
