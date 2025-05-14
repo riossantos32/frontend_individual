@@ -37,16 +37,11 @@ const Tarjeta = ({ indice,
               <i className="bi-tag"></i> Categoría: {id_categoria}
             </Badge>
           </Stack>
+          
         </Card.Body>
       </Card>
     </Col>
 
-    <Paginacion
-  elementosPorPagina={elementosPorPagina}
-  totalElementos={totalElementos}
-  paginaActual={paginaActual}
-  establecerPaginaActual={establecerPaginaActual}
-/>
 </>
   );
 };
