@@ -9,7 +9,7 @@ import ModalRegistroVenta from '../components/venta/ModalRegistroVenta';
 import ModalActualizacionVenta from '../components/venta/ModalActualizacionVenta';
 
 
-// Declaración del componente Ventas
+// Declaración del componente de ventas
 const Ventas = () => {
   // Estados para manejar los datos, carga y errores
   const [listaVentas, setListaVentas] = useState([]); // Almacena los datos de la API
