@@ -3,7 +3,7 @@ import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) => {
+const TablaProductos = ({ productos, cargando, error, abrirModalEliminacion, generarPDFDetalleProducto}) => {
 
   if (cargando) {
     return <div>Cargando productos...</div>; // Muestra mensaje mientras carga
@@ -11,6 +11,7 @@ const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) =
   if (error) {
     return <div>Error: {error}</div>;        // Muestra error si ocurre
   }
+  
 
   // Renderizado de la tabla con los datos recibidos
   return (
@@ -24,6 +25,7 @@ const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) =
           <th>Precio Unitario</th>
           <th>Stock</th>
           <th>Imagen</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -53,6 +55,16 @@ const TablaProductos = ({ productos, cargando, error , abrirModalEliminacion}) =
              onClick={() => abrirModalEliminacion(producto)}  >
              <i className="bi bi-trash"></i>
              </Button>
+
+              <Button
+               variant="outline-secondary"
+               size="sm"
+               className="me-2"
+               onClick={() => generarPDFDetalleProducto(producto)}
+             >
+               <i className="bi bi-filetype-pdf"></i>
+             </Button>
+             
              </td>
           </tr>
         ))}

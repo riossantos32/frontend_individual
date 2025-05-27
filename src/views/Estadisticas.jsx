@@ -9,7 +9,7 @@ const [meses, setMeses] = useState([]);
 const [mesess, setMesess] = useState([]);
 const [totalesPorMes, setTotalesPorMes] = useState([]);
 const [totalesPventasporeempleados, setTotalesPorempleados] = useState([]);
-const [empleados, setEmpleados] = useState([]);
+const [empleados, setEmpleados] = useState([]); 
 const [total_ventas, setTotalVentas] = useState([]);
 
 useEffect(() => {

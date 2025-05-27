@@ -214,7 +214,7 @@ const categoriasPaginadas = categoriasFiltradas.slice(
           elementosPorPagina={elementosPorPagina} // Elementos por página
           paginaActual={paginaActual} // Página actual
           establecerPaginaActual={establecerPaginaActual} // Método para cambiar página
-          abrirModalEliminacion={abrirModalEliminacion} // Método para abrir modal de eliminación
+          abrirModalEliminacionn={abrirModalEliminacion} // Método para abrir modal de eliminación
           abrirModalEdicion={abrirModalEdicion} // Método para abrir modal de edición
         />
 

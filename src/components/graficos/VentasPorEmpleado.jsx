@@ -13,18 +13,18 @@ const data = {
       data: total_ventas, // Total de ventas por empleado
      backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
+        'rgba(32, 85, 121, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
+        'rgba(29, 155, 46, 0.2)',
         'rgba(255, 159, 64, 0.2)',
       ],
       borderColor: [
-        'rgba(255, 99, 132, 1)',
+        'rgb(43, 155, 15)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
+        'rgb(110, 71, 189)',
         'rgba(255, 159, 64, 1)',
       ],    
       borderWidth: 1,
