@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-const VentasPorMes = ({ meses, totales_por_mes }) => {
+const VentasPorMes = ({ cliente, cantidadcomprada }) => {
 
   const chartRef = useRef(null);
   // Define chart data
@@ -14,8 +14,8 @@ const VentasPorMes = ({ meses, totales_por_mes }) => {
     labels: meses,
     datasets: [ 
       {
-        label: 'Ventas por Mes',
-        data: totales_por_mes,
+        label: 'cliente',
+        data: cantidadcomprada,
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
