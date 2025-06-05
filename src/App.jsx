@@ -12,28 +12,33 @@ import Compras from "./views/Compras";
 import Catalogo from "./views/CatalogoProductos"
 import Estadistica  from "./views/Estadisticas";
 import Dashboard from "./views/Dashboard";
+import RutaProtegida from "./components/rutas/RutaProtegida";
+import PiePagina from "./infopie/PiePagina";
 
 
 const App = () => {
   return (
       <Router>
-        //Contenedor principal con margen superior
-      <main className="margen-superior-main">
-      <Encabezado/>    
+        <div className="App-wrapper">
+      <Encabezado/> 
+      <main className="margen-superior-main content">    
         <Routes>
          //Definicion de rutas
-          <Route path="/" element={<Login />} />
-          <Route path="/inicio" element={<Inicio />} />
-          <Route path="/clientes" element={<Clientes/>} />
-          <Route path="/productos" element={<Producto/>} />
-          <Route path="/categorias" element={<Categorias />} />
-           <Route path="/Compras" element={<Compras />} />
-          <Route path="/ventas" element={<Ventas />} />
-           <Route path="/CatalogoProductos" element={<Catalogo />} />
-            <Route path="/Estadisticas" element={<Estadistica />} />
-           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/" element={< Login/>} />
+
+          <Route path="/inicio" element={<RutaProtegida vista={<Inicio/>}/>} />
+          <Route path="/clientes" element={<RutaProtegida vista={<Clientes/>}/>} />
+          <Route path="/productos" element={<RutaProtegida vista={<Producto/>}/>} />
+          <Route path="/categorias" element={<RutaProtegida vista={<Categorias />}/>} />
+           <Route path="/Compras" element={<RutaProtegida vista={<Compras />}/>} />
+          <Route path="/ventas" element={<RutaProtegida vista={<Ventas />}/>} />
+           <Route path="/CatalogoProductos" element={<RutaProtegida vista={<Catalogo />}/>} />
+            <Route path="/Estadisticas" element={<RutaProtegida vista={<Estadistica />}/>} />
+           <Route path="/Dashboard" element={<RutaProtegida vista={<Dashboard />}/>} />
         </Routes>
-      </main>
+        </main>
+        <PiePagina />
+        </div>
     </Router>
   );
 };

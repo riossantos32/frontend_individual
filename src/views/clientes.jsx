@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import TablaClientes from '../components/cliente/TablaClientes'; // Importa el componente de tabla
 import { Container, Button, Row, Col } from "react-bootstrap";
-import ModalRegistroCategoria from '../components/categorias/ModalRegistroCategoria';
+import ModalRegistroCliente from '../components/cliente/ModalRegistroCliente';
 import CuadroBusquedas from '../components/busquedas/CuadroBusquedas';
 
 // Declaración del componente Categorias
@@ -13,8 +13,18 @@ const Clientes = () => {
   const [cargando, setCargando] = useState(true);            // Controla el estado de carga
   const [errorCarga, setErrorCarga] = useState(null);        // Maneja errores de la petición
   const [mostrarModal, setMostrarModal] = useState(false);
-   const [clientesFiltradas, setClientesFiltradas] = useState([]);
-    const [textoBusqueda, setTextoBusqueda] = useState("");
+  const [clientesFiltradas, setClientesFiltradas] = useState([]);
+  const [textoBusqueda, setTextoBusqueda] = useState("");
+  const [nuevoCliente, setNuevoCliente] = useState({
+     primer_nombre: '',
+     segundo_nombre : '',
+     primer_apellido: '',
+     segundo_apellido: '',
+     celular: '',
+     direccion: '',
+     cedula: '',
+     
+   });
  
 
   const obtenerClientes = async () => { // Método renombrado a español
@@ -43,7 +53,7 @@ const Clientes = () => {
   // Maneja los cambios en los inputs del modal
   const manejarCambioInput = (e) => {
     const { name, value } = e.target;
-    setNuevaCategoria(prev => ({
+    setNuevoCliente(prev => ({
       ...prev,
       [name]: value
     }));
@@ -61,7 +71,34 @@ const Clientes = () => {
     setClientesFiltradas(filtradas);
   };
 
+  // Manejo la inserción de una nueva categoría
+  const agregarCliente = async () => {
 
+   
+
+    try {
+      const respuesta = await fetch('http://localhost:3000/api/registrarclientes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(nuevoCliente),
+      });
+
+      if (!respuesta.ok) {
+        throw new Error('Error al agregar la categoría');
+      }
+
+      await obtenerClientes(); // Refresca toda la lista desde el servidor
+      setNuevoCliente({ primer_nombre: '', segundo_nombre: '', primer_apellido: '', segundo_apellido: '', celular: '', direccion: '', cedula: '' });
+      setMostrarModal(false);
+      setErrorCarga(null);
+    } catch (error) {
+      setErrorCarga(error.message);
+    }
+  };
+
+ 
 
   // Renderizado de la vista
   return (
@@ -91,6 +128,16 @@ const Clientes = () => {
           manejarCambioInput={manejarCambioInput}
           cargando={cargando} 
           error={errorCarga} 
+        />
+
+        
+<ModalRegistroCliente
+          mostrarModal={mostrarModal}
+          setMostrarModal={setMostrarModal} 
+          nuevoCliente={nuevoCliente}
+          manejarCambioInput={manejarCambioInput}
+          agregarCliente={agregarCliente}
+          errorCarga={errorCarga}
         />
 
       </Container>

@@ -49,7 +49,6 @@ const cargaVentasPorEmpleado = async () => {
 };
 
 
-
 return (
   <Container className="mt-5">
     <br />

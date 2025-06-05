@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Container, Nav, Navbar, Offcanvas, NavDropdown } from "react-bootstrap";
-import logo from "/vite.svg"; // Importación del logo de la ferretería
+import logo from "../../assets/logo_blanco.png"; // Importación del logo de la ferretería
 import "bootstrap-icons/font/bootstrap-icons.css"; // Importación de íconos de Bootstrap
 import "../../App.css"; // Estilos personalizados de la aplicación
+
 
 const Encabezado = () => {
   // Estado para controlar el colapso del menú lateral
@@ -78,8 +79,13 @@ const Encabezado = () => {
           {/* Cuerpo del menú lateral */}
           <Offcanvas.Body>
             {/* Navegación */}
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              {/* Opción de navegación a Inicio */}
+            <Nav >
+             
+
+
+            {estaLogueado ? (
+  <>
+   {/* Opción de navegación a Inicio */}
               <Nav.Link
                 onClick={() => navegarA("/inicio")}
                 className={estaColapsado ? "text-black" : "text-white"}
@@ -180,27 +186,19 @@ const Encabezado = () => {
                 {estaColapsado ? <i className="bi-house-door-fill me-2"></i> : null}
                 <strong>Estadisticas</strong>
               </Nav.Link>
+  </>
+) : (
+  // Opción visible solo si el usuario no está logueado
+  <Nav.Link
+    onClick={() => navegarA('/')}
+    className={estaColapsado ? 'text-black' : 'text-white'}
+  >
+    <i className="bi-box-arrow-in-right me-2"></i>
+    <strong>Iniciar Sesión</strong>
+  </Nav.Link>
+)}
 
-              {/* Lógica condicional para mostrar Cerrar Sesión o Iniciar Sesión */}
-              {estaLogueado ? (
-                // Opción de cerrar sesión
-                <Nav.Link
-                  onClick={cerrarSesion}
-                  className={estaColapsado ? "text-black" : "text-white"}
-                >
-                  Cerrar Sesión
-                </Nav.Link>
-              ) : (
-                ubicacion.pathname === "/" && (
-                  // Opción de iniciar sesión (solo en la ruta raíz)
-                  <Nav.Link
-                    onClick={() => navegarA("/")}
-                    className={estaColapsado ? "text-black" : "text-white"}
-                  >
-                    Iniciar Sesión
-                  </Nav.Link>
-                )
-              )}
+
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
